@@ -14,7 +14,7 @@ export interface Edge {
   id: string;
   source: string;
   target: string;
-  animated: boolean;
+  animated?: boolean;
   type?: string;
 }
 
