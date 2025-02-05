@@ -14,6 +14,11 @@ export interface Edge {
   target: string;
 }
 
+export interface GraphState {
+  nodes: Node[];
+  edges: Edge[];
+}
+
 export interface HistoryState {
   past: { nodes: Node[]; edges: Edge[] }[];
   present: { nodes: Node[]; edges: Edge[] };
