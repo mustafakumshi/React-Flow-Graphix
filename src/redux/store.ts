@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import graphReducer from "./graphSlice";
+import nodeStylingReducer from "./nodeStylingSlice"
 
 export const store = configureStore({
   reducer: {
     graph: graphReducer,
+    nodeStyling: nodeStylingReducer
   },
 });
 

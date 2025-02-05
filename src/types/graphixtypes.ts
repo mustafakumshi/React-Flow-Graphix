@@ -4,7 +4,6 @@ export interface Node {
   data: {
     label: string;
     color: string;
-    bgColor: string;
     fontSize: number;
   };
   type?: string;
