@@ -21,9 +21,3 @@ export interface GraphState {
   nodes: Node[];
   edges: Edge[];
 }
-
-export interface HistoryState {
-  past: { nodes: Node[]; edges: Edge[] }[];
-  present: { nodes: Node[]; edges: Edge[] };
-  future: { nodes: Node[]; edges: Edge[] }[];
-}

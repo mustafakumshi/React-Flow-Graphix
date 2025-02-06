@@ -15,11 +15,22 @@ interface ActiveNodeData {
 // Define the initial state for the node styling
 interface NodeStylingState {
   activeNodeData: ActiveNodeData; // Data of the active node
+  initialData: ActiveNodeData;
 }
 
 // Initial state with a default node
 const initialState: NodeStylingState = {
   activeNodeData: {
+    id: null,
+    position: { x: null, y: null },
+    data: {
+      label: null,
+      color: null,
+      fontSize: null,
+    },
+    type: null,
+  },
+  initialData: {
     id: null,
     position: { x: null, y: null },
     data: {
@@ -42,6 +53,7 @@ const nodeStylingSlice = createSlice({
       action: PayloadAction<{ currentNodeData: ActiveNodeData }>
     ) => {
       state.activeNodeData = action.payload.currentNodeData;
+      state.initialData = action.payload.currentNodeData;
     },
 
     // Update the active node data (for updating name, color, font size)
@@ -72,6 +84,7 @@ const nodeStylingSlice = createSlice({
     // Reset Active Node
     resetNodeData: (state) => {
       state.activeNodeData = initialState.activeNodeData;
+      state.initialData = initialState.initialData;
     },
   },
 });

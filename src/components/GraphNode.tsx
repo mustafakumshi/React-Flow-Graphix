@@ -18,7 +18,7 @@ const GraphNode: React.FC<GraphNodeProps> = ({ id, data, positionAbsoluteX, posi
   const { label, color, fontSize} = data;
 
   const activeNodeData = useSelector((state : RootState) => state.nodeStyling.activeNodeData);
-  const {color: activeColor, fontSize: activeFontSize, label: activeName} = activeNodeData.data; 
+  const {color: activeColor, fontSize: activeFontSize, label: activeName} = activeNodeData.data;
 
   const dispatch = useDispatch();
 
