@@ -1,50 +1,55 @@
-# React + TypeScript + Vite
+# React Flow Graphix
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React Flow Graphix is a **dynamic graph visualization tool** built using **React**, **Redux**, and **React Flow**. It provides an interactive and customizable interface for creating and managing node-based graphs. The application leverages **Tailwind CSS** for styling and **React Icons** for UI enhancements.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Interactive Graphs**: Create, connect, and modify nodes with ease.
+- **Custom Nodes**: Supports fully customizable node designs.
+- **State Management**: Uses **Redux** to manage the application state efficiently.
+- **Undo & Redo**: Implement undo and redo functionality for better control.
+- **Fit View on Load**: Automatically adjusts the graph to fit the view on load.
+- **Responsive Design**: Styled with **Tailwind CSS** for a modern, adaptive layout.
 
-## Expanding the ESLint configuration
+## Installation & Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+To get started, follow these steps:
 
-- Configure the top-level `parserOptions` property like this:
+1. Clone the repository:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+    ```bash
+    git clone https://github.com/your-username/react-flow-graphix.git
+    cd react-flow-graphix
+    ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+    ```bash
+    npm install
+    ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+3. Start the development server:
+
+    ```bash
+    npm run dev
+    ```
+
+4. Open the application in your browser:
+
+    ```
+    http://localhost:3000
+    ```
+
+## Key Technologies
+
+- **React**: A powerful JavaScript library for building dynamic and interactive user interfaces. React is used in this project to create a flexible component-based architecture for managing and visualizing graphs efficiently.
+
+- **Redux Toolkit**: A state management library that simplifies handling application state. In this project, Redux Toolkit is used to manage graph data, enabling efficient updates and synchronization across components.
+
+- **React Flow**: A graph visualization library for React that allows for intuitive creation, connection, and management of nodes. It is used to implement drag-and-drop nodes, interactive edges, and advanced layout customization.
+
+- **Tailwind CSS**: A utility-first CSS framework that provides a responsive and modern design. Tailwind is used in this project to style the application efficiently, ensuring a clean and adaptive layout.
+
+- **React Icons**: A collection of customizable icons that enhance the user interface. React Icons are used throughout the project to provide intuitive visual elements and improve user experience.
+
+- **Vite**: A next-generation frontend tooling framework that provides lightning-fast hot module replacement (HMR) and optimized build times. It enhances the development experience by making the app faster and more efficient.
