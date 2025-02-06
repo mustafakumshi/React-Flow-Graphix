@@ -4,12 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { resetNodeData, updateNodeData } from '../redux/nodeStylingSlice';
 import { RootState } from '../redux/store';
 import { useEffect } from 'react';
+import { nodeModified } from '../redux/historyDataSlice';
+import { updateNode } from '../redux/graphSlice';
 
 
 const NodeCustomizationPanel= () => {
 
   const activeNodeData = useSelector((state : RootState) => state.nodeStyling.activeNodeData);
-  const {color: activeColor, fontSize: activeFontSize, label: activeName} = activeNodeData.data;   
+  const {color: activeColor, fontSize: activeFontSize, label: activeName} = activeNodeData.data; 
+  
+  const initialData = useSelector((state : RootState) => state.nodeStyling.initialData);
+  const {color: oldColor, fontSize: oldFontSize, label: oldName} = initialData.data;  
 
   const [color, setColor] = useState(activeColor);
   const [fontSize, setFontSize] = useState(activeFontSize);
@@ -76,6 +81,36 @@ const NodeCustomizationPanel= () => {
   }
 
   const handleSave = () => {
+    if(activeNodeData.id){
+        dispatch(nodeModified({
+            nodeId: activeNodeData.id,
+            type: "Node_Modified",
+            nodeData: {
+                old: {
+                    color: oldColor, 
+                    fontSize: oldFontSize, 
+                    label: oldName
+                },
+                new: {
+                   color: activeColor, 
+                   fontSize: activeFontSize, 
+                   label: activeName
+                }
+            }
+        }))
+    if(activeColor && activeFontSize && activeName){   
+        dispatch(updateNode({
+           id: activeNodeData.id,
+           updatedNode: {
+            data: {
+              label: activeName,
+              color: activeColor,
+              fontSize: activeFontSize
+            }
+           }
+        }))
+      }   
+    }
     dispatch(resetNodeData());
   };
 

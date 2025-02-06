@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import graphReducer from "./graphSlice";
-import nodeStylingReducer from "./nodeStylingSlice"
+import nodeStylingReducer from "./nodeStylingSlice";
+import historyReducer from "./historyDataSlice"
 
 export const store = configureStore({
   reducer: {
     graph: graphReducer,
-    nodeStyling: nodeStylingReducer
+    nodeStyling: nodeStylingReducer,
+    history: historyReducer
   },
 });
 
