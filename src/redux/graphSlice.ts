@@ -1,4 +1,3 @@
-// src/store/graphSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Node, GraphState } from '../types/graphixtypes'; 
 import { initialNodes, initialEdges } from '../data/initialGraphData';  // Initial nodes and edges

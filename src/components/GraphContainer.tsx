@@ -1,5 +1,13 @@
-import React, { useEffect } from "react";
-import { ReactFlow, Controls, Background, useNodesState, useEdgesState } from "@xyflow/react";
+import { useEffect } from "react";
+import { 
+  ReactFlow, 
+  Controls, 
+  Background, 
+  useNodesState, 
+  useEdgesState, 
+  useReactFlow, 
+  ReactFlowProvider 
+} from "@xyflow/react";
 import '@xyflow/react/dist/style.css';
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
@@ -7,27 +15,30 @@ import GraphNode from "./GraphNode";
 import NodeCustomizationPanel from "./NodeCustomizationPanel";
 import UndoRedoControls from "./UndoRedoControls";
 
-const GraphContainer = () => {
+const NodeTypes = {
+  custom: GraphNode
+};
 
+const GraphFlowComponent = () => {
   const initialNodes = useSelector((state: RootState) => state.graph.nodes);
   const initialEdges = useSelector((state: RootState) => state.graph.edges);
-
-    // UseEffect to sync Redux state with local state
-    useEffect(() => {
-      setNodes(initialNodes); // Sync Redux state with local state for nodes
-      setEdges(initialEdges); // Sync Redux state with local state for edges
-    }, [initialNodes, initialEdges]);
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
-  const NodeTypes = {
-    custom: GraphNode
-}
+  const { fitView } = useReactFlow(); 
+
+  useEffect(() => {
+    setNodes(initialNodes);
+    setEdges(initialEdges);
+  }, [initialNodes, initialEdges]);
+
+  useEffect(() => {
+    fitView({ duration: 1000, padding: 0.2 });
+  }, [fitView, nodes, edges]); 
 
   return (
-    <div className="flex justify-center gap-14 flex-wrap">
-    <div className="w-[600px] h-[600px] border border-black">
+    <div className="w-[600px] h-[70vh] md:h-[600px] border border-black">
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -39,9 +50,18 @@ const GraphContainer = () => {
         <Background />
       </ReactFlow>
     </div>
-    <NodeCustomizationPanel/>
-    <UndoRedoControls/>
-    </div>
+  );
+};
+
+const GraphContainer = () => {
+  return (
+    <ReactFlowProvider>
+      <div className="flex justify-items-start md:gap-14 gap-6 flex-wrap px-4 md:px-12">
+        <GraphFlowComponent />
+        <NodeCustomizationPanel />
+        <UndoRedoControls />
+      </div>
+    </ReactFlowProvider>
   );
 };
 

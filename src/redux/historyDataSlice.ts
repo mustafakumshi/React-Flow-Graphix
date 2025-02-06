@@ -1,30 +1,28 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Define the state structure more explicitly
-interface NodeState {
+export interface NodeState {
   nodeId: string; // The ID of the node
   type: string;
   nodeData: any;  // The data associated with the node (e.g., label, color, etc.)
 }
 
-interface NodeDraggedState {
+export interface NodeDraggedState {
   nodeId: string; // The ID of the node
   type: string;
   position: { x: number; y: number };  // Position change of the node (x, y)
 }
 
-interface HistoryState {
+export interface HistoryState {
   past: (NodeState | NodeDraggedState)[];  // Array of past node states or position changes
   present: NodeState | NodeDraggedState | null;  // Current node state or position
   future: (NodeState | NodeDraggedState)[];  // Array of future node states or position changes
-  currentAction: string | null;
 }
 
 const initialState: HistoryState = {
   past: [],
   present: null, // Could be either NodeState or NodeDraggedState
   future: [],
-  currentAction: null
 };
 
 const historySlice = createSlice({
@@ -54,7 +52,6 @@ const historySlice = createSlice({
       if (state.past.length > 0) {
         state.future.unshift(state.present!); // Push the current state into the future stack
         state.present = state.past.pop()!; // Pop the last state from past and set it as present
-        state.currentAction = "undo"
       }
     },
 
@@ -63,7 +60,6 @@ const historySlice = createSlice({
       if (state.future.length > 0) {
         state.past.push(state.present!); // Push the current state into the past stack
         state.present = state.future.shift()!; // Shift the first state from the future stack to present
-        state.currentAction = "redo"
       }
     },
   },

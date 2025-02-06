@@ -1,10 +1,11 @@
 import GraphContainer from "./components/GraphContainer"
+import Title from "./components/Title"
 
 function App() {
 
   return (
     <>
-    <div className="text-3xl font-bold underline text-blue-900">React Flow Graphix</div>
+    <Title>React Flow Graphics</Title>
     <GraphContainer/>
     </>
   )
